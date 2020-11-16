@@ -1,0 +1,7 @@
+generated_data/
+raw_data/
+__pycache__/
+.idea
+*.iws
+*.iml
+*.ipr
