@@ -117,4 +117,4 @@ def gen_pojo_from_dict(li):
 
 if __name__ == "__main__":
 #    gen_pojo("/home/hoangbao/workspace/utils/raw_data/v1.txt")
-    gen_pojo_from_json("raw_data/data.json")
+    gen_pojo_from_json("raw_data/v2.json")

@@ -1,0 +1,27 @@
+{
+    "application": {
+        "product": "pdl",
+        "amount": 1000,
+        "term": 10,
+        "limit_slider_changed": false,
+        "revenue_amount": 1000
+    },
+    "borrower": {
+        "full_name": "lucas modric",
+        "mobile_phone": "0965 114 5445"
+    },
+    "meta":[ 
+        {
+            "utm_medium": "organic",
+            "utm_source": "google",
+            "ga": "1799796150.1585560018",
+            "uid": "6650320723472547840"
+        },
+        {
+            "utm_medium": "organic",
+            "utm_source": "google",
+            "ga": "1799796150.1585560018",
+            "uid": "6650320723472547840"
+        }
+    ]
+}

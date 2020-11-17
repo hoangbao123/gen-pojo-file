@@ -10,7 +10,7 @@ class ClassData:
             raise ValueError("Not enough data to gen class")
         else:
             if (file_type == 'java'):
-                f = open(f"generated_data/{self.class_name.capitalize()}.java", "w")
+                f = open(f"gen2/{self.class_name.capitalize()}.java", "w")
                 self.gen_java_class(f)
             else:
                 raise ValueError(f"File type {file_type} is not supported")
@@ -37,10 +37,10 @@ class ClassData:
             fw.write(self.IDENT * num_indent + f"private {self.mapping_type(attr_type)} {attr_name};" + "\n")
             fw.write("\n")
 
-        for k, v in self.inner_class:
+        for k, v in self.inner_class.items():
             v.gen_java_class(fw, True, num_indent + 1)
             
-        fw.write(self.IDENT * (num_indent - 1) + "}")
+        fw.write(self.IDENT * (num_indent - 1) + "} \n\n")
 
 
     def mapping_type(self, source_type: str, program_language='java'):
