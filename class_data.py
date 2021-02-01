@@ -38,7 +38,8 @@ class ClassData:
             fw.write("\n")
 
         for k, v in self.inner_class.items():
-            v.gen_java_class(fw, True, num_indent + 1)
+            if v is not None:
+                v.gen_java_class(fw, True, num_indent + 1)
             
         fw.write(self.IDENT * (num_indent - 1) + "} \n\n")
 
@@ -58,7 +59,7 @@ class ClassData:
         elif source_type.lower() == "double" or source_type.lower() == "float":
             des_type = "Double"
         elif source_type.lower() == "timestamp":
-            des_type = "ZonedTimeDate"
+            des_type = "ZonedDateTime"
         else:
             if source_type in self.inner_class:
                 des_type = source_type 

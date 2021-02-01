@@ -88,9 +88,20 @@ def gen_pojo_from_object(source_object, class_name):
             elif isinstance(v, bool):
                 current_attr.append(gen_attr_dict(k, gen_var_name(k), 'Boolean', True, True, True))
             elif isinstance(v, list):
-                current_attr.append(gen_attr_dict(k, gen_var_name(k), f'List<{gen_class_name(k)}>', True, True, True))
-                inner_class = gen_pojo_from_object(v[0], gen_class_name(k))
-                inner_class_dict[f'List<{gen_class_name(k)}>'] = inner_class
+                inner_class = None
+                if isinstance(v[0], int):
+                    inner_class_name = "Integer"
+                elif isinstance(v[0], float):
+                    inner_class_name = "Double"
+                elif isinstance(v[0], str):
+                    inner_class_name = "String"
+                elif isinstance(v[0], bool):
+                    inner_class_name = "Boolean"
+                else:
+                    inner_class_name = gen_class_name(k)
+                    inner_class = gen_pojo_from_object(v[0], gen_class_name(k))
+                inner_class_dict[f'List<{inner_class_name}>'] = inner_class
+                current_attr.append(gen_attr_dict(k, gen_var_name(k), f'List<{inner_class_name}>', True, True, True))
             elif isinstance(v, dict):
                 current_attr.append(gen_attr_dict(k, gen_var_name(k), gen_class_name(k), True, True, True))
                 inner_class = gen_pojo_from_object(v, gen_class_name(k))
@@ -116,5 +127,5 @@ def gen_pojo_from_dict(li):
 
 
 if __name__ == "__main__":
-#    gen_pojo("/home/hoangbao/workspace/utils/raw_data/v1.txt")
-    gen_pojo_from_json("raw_data/v2.json")
+#    gen_pojo("/home/hoangbao/workspace/utils/raw_data/odds.txt")
+    gen_pojo_from_json("raw_data/res.json", class_name="Res")
